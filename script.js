@@ -3,40 +3,69 @@ function postItem() {
     const description = document.getElementById('description').value;
     const price = document.getElementById('price').value || "0円";
     const imageInput = document.getElementById('image');
-    
-    if (!title || !description) {
-        alert('タイトルと説明を入力してください');
+    const sellerInstagram = document.getElementById('instagram').value.trim(); // Instagram IDを取得
+
+    if (!title || !description || !sellerInstagram) {
+        alert('タイトル、説明、出品者のInstagram IDを入力してください');
         return;
     }
-    
-    const itemList = document.getElementById('itemList');
-    const item = document.createElement('div');
-    item.style.border = "1px solid black";
-    item.style.margin = "10px";
-    item.style.padding = "10px";
-    
+
     let imageUrl = "";
     if (imageInput.files && imageInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function (e) {
             imageUrl = e.target.result;
-            item.innerHTML = `<h3>${title}</h3><p>${description}</p><p>価格: ${price}</p><img src="${imageUrl}" style="max-width:100%; height:auto;"><br><button onclick="requestItem('${title}')">欲しい！</button>`;
-            itemList.appendChild(item);
+            saveItem({ title, description, price, imageUrl, sellerInstagram });
         };
         reader.readAsDataURL(imageInput.files[0]);
     } else {
-        item.innerHTML = `<h3>${title}</h3><p>${description}</p><p>価格: ${price}</p><button onclick="requestItem('${title}')">欲しい！</button>`;
-        itemList.appendChild(item);
+        saveItem({ title, description, price, imageUrl, sellerInstagram });
     }
+}
+
+function saveItem(item) {
+    let items = JSON.parse(localStorage.getItem('iranaiItems')) || [];
+    items.push(item);
+    localStorage.setItem('iranaiItems', JSON.stringify(items));
+    displayItems();
+}
+
+function displayItems() {
+    const itemList = document.getElementById('itemList');
+    itemList.innerHTML = "";
+    let items = JSON.parse(localStorage.getItem('iranaiItems')) || [];
+
+    items.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.style.border = "1px solid black";
+        itemDiv.style.margin = "10px";
+        itemDiv.style.padding = "10px";
+
+        let imageTag = item.imageUrl ? `<img src="${item.imageUrl}" style="max-width:100%; height:auto;"><br>` : "";
+        
+        itemDiv.innerHTML = `<h3>${item.title}</h3>
+                             <p>${item.description}</p>
+                             <p>価格: ${item.price}</p>
+                             ${imageTag}
+                             <p>出品者: <a href="https://www.instagram.com/${item.sellerInstagram}" target="_blank">@${item.sellerInstagram}</a></p>
+                             <button onclick="requestItem('${item.title}', '${item.sellerInstagram}')">欲しい！</button>
+                             <button onclick="deleteItem(${index})">削除</button>`;
+        
+        itemList.appendChild(itemDiv);
+    });
+}
+
+function deleteItem(index) {
+    let items = JSON.parse(localStorage.getItem('iranaiItems')) || [];
+    items.splice(index, 1);
+    localStorage.setItem('iranaiItems', JSON.stringify(items));
+    displayItems();
 }
 
 function requestItem(title, sellerInstagram) {
-    if (!sellerInstagram) {
-        alert("出品者のインスタIDが登録されていません");
-        return;
-    }
-    
     const dmLink = `https://www.instagram.com/direct/new/?text=${encodeURIComponent(`「${title}」が欲しいです！\nお取引についてご連絡ください！`)}&recipient=${sellerInstagram}`;
-
-    window.open(dmLink, '_blank'); // DM画面に飛ぶ & メッセージ入力済み
+    window.open(dmLink, '_blank');
 }
+
+// ページを開いた時にリストを表示する
+window.onload = displayItems;
