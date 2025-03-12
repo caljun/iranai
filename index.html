@@ -9,7 +9,10 @@
 <body>
     <h1>IraNai</h1>
     <p>不要品を気軽にシェアしよう！</p>
-    
+
+    <!-- マイリストを作るボタン -->
+    <button onclick="createUserList()">マイリストを作る</button>
+
     <div class="container">
         <h2>不要品を投稿</h2>
         <input type="text" id="title" placeholder="タイトル">
@@ -19,10 +22,10 @@
         <input type="text" id="instagram" placeholder="Instagram ID（@なしで入力）">
         <button onclick="postItem()">リストに追加</button>
     </div>
-    
+
     <h2>不要品リスト</h2>
     <div id="itemList" class="container"></div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
