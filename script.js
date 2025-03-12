@@ -3,6 +3,14 @@ function getUser() {
     return params.get("user") || "default"; // ユーザー名を取得（なければ "default"）
 }
 
+function createUserList() {
+    const username = prompt("あなたの名前（またはID）を入力してください");
+    if (username) {
+        window.location.href = `?user=${encodeURIComponent(username)}`;
+    }
+}
+
+
 function postItem() {
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
@@ -78,14 +86,6 @@ function requestItem(title, sellerInstagram) {
     const dmLink = `https://www.instagram.com/direct/new/?text=${encodeURIComponent(`「${title}」が欲しいです！\nお取引についてご連絡ください！`)}&recipient=${sellerInstagram}`;
     window.open(dmLink, '_blank');
 }
-
-function createUserList() {
-    const username = prompt("あなたの名前（またはID）を入力してください");
-    if (username) {
-        window.location.href = `?user=${encodeURIComponent(username)}`;
-    }
-}
-
 
 // ユーザーごとのリストを表示
 window.onload = displayItems;
