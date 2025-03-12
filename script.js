@@ -1,3 +1,8 @@
+function getUser() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("user") || "default";
+}
+
 function postItem() {
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
@@ -24,16 +29,18 @@ function postItem() {
 }
 
 function saveItem(item) {
-    let items = JSON.parse(localStorage.getItem('iranaiItems')) || [];
+    const user = getUser();
+    let items = JSON.parse(localStorage.getItem(`iranaiItems_${user}`)) || [];
     items.push(item);
-    localStorage.setItem('iranaiItems', JSON.stringify(items));
+    localStorage.setItem(`iranaiItems_${user}`, JSON.stringify(items));
     displayItems();
 }
 
 function displayItems() {
+    const user = getUser();
     const itemList = document.getElementById('itemList');
     itemList.innerHTML = "";
-    let items = JSON.parse(localStorage.getItem('iranaiItems')) || [];
+    let items = JSON.parse(localStorage.getItem(`iranaiItems_${user}`)) || [];
 
     items.forEach((item, index) => {
         const itemDiv = document.createElement('div');
@@ -56,9 +63,10 @@ function displayItems() {
 }
 
 function deleteItem(index) {
-    let items = JSON.parse(localStorage.getItem('iranaiItems')) || [];
+    const user = getUser();
+    let items = JSON.parse(localStorage.getItem(`iranaiItems_${user}`)) || [];
     items.splice(index, 1);
-    localStorage.setItem('iranaiItems', JSON.stringify(items));
+    localStorage.setItem(`iranaiItems_${user}`, JSON.stringify(items));
     displayItems();
 }
 
