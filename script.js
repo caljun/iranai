@@ -1,6 +1,6 @@
 function getUser() {
     const params = new URLSearchParams(window.location.search);
-    return params.get("user") || "default";
+    return params.get("user") || "default"; // ユーザー名を取得（なければ "default"）
 }
 
 function postItem() {
@@ -8,7 +8,7 @@ function postItem() {
     const description = document.getElementById('description').value.trim();
     const price = document.getElementById('price').value || "0円";
     const imageInput = document.getElementById('image');
-    const sellerInstagram = document.getElementById('instagram').value.trim(); // Instagram IDを取得
+    const sellerInstagram = document.getElementById('instagram').value.trim();
 
     if (!title || !description || !sellerInstagram) {
         alert('タイトル、説明、出品者のInstagram IDを入力してください');
@@ -29,7 +29,7 @@ function postItem() {
 }
 
 function saveItem(item) {
-    const user = getUser();
+    const user = getUser(); // ユーザー名を取得
     let items = JSON.parse(localStorage.getItem(`iranaiItems_${user}`)) || [];
     items.push(item);
     localStorage.setItem(`iranaiItems_${user}`, JSON.stringify(items));
@@ -49,7 +49,7 @@ function displayItems() {
         itemDiv.style.padding = "10px";
 
         let imageTag = item.imageUrl ? `<img src="${item.imageUrl}" style="max-width:100%; height:auto;"><br>` : "";
-        
+
         itemDiv.innerHTML = `<h3>${item.title}</h3>
                              <p>${item.description}</p>
                              <p>価格: ${item.price}</p>
@@ -57,7 +57,7 @@ function displayItems() {
                              <p>出品者: <a href="https://www.instagram.com/${item.sellerInstagram}" target="_blank">@${item.sellerInstagram}</a></p>
                              <button onclick="requestItem('${item.title}', '${item.sellerInstagram}')">欲しい！</button>
                              <button onclick="deleteItem(${index})">削除</button>`;
-        
+
         itemList.appendChild(itemDiv);
     });
 }
@@ -79,5 +79,5 @@ function requestItem(title, sellerInstagram) {
     window.open(dmLink, '_blank');
 }
 
-// ページを開いた時にリストを表示する
+// ユーザーごとのリストを表示
 window.onload = displayItems;
