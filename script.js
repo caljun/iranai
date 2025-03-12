@@ -79,5 +79,13 @@ function requestItem(title, sellerInstagram) {
     window.open(dmLink, '_blank');
 }
 
+function createUserList() {
+    const username = prompt("あなたの名前（またはID）を入力してください");
+    if (username) {
+        window.location.href = `?user=${encodeURIComponent(username)}`;
+    }
+}
+
+
 // ユーザーごとのリストを表示
 window.onload = displayItems;
