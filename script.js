@@ -1,6 +1,6 @@
 function postItem() {
-    const title = document.getElementById('title').value;
-    const description = document.getElementById('description').value;
+    const title = document.getElementById('title').value.trim();
+    const description = document.getElementById('description').value.trim();
     const price = document.getElementById('price').value || "0円";
     const imageInput = document.getElementById('image');
     const sellerInstagram = document.getElementById('instagram').value.trim(); // Instagram IDを取得
@@ -63,6 +63,10 @@ function deleteItem(index) {
 }
 
 function requestItem(title, sellerInstagram) {
+    if (!sellerInstagram) {
+        alert("出品者のInstagram IDが登録されていません");
+        return;
+    }
     const dmLink = `https://www.instagram.com/direct/new/?text=${encodeURIComponent(`「${title}」が欲しいです！\nお取引についてご連絡ください！`)}&recipient=${sellerInstagram}`;
     window.open(dmLink, '_blank');
 }
