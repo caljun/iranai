@@ -1,3 +1,10 @@
+function createUserList() {
+    const username = prompt("あなたの名前（またはID）を入力してください");
+    if (username) {
+        window.location.href = `?user=${encodeURIComponent(username)}`;
+    }
+}
+
 function getUser() {
     const params = new URLSearchParams(window.location.search);
     return params.get("user") || "default"; // ユーザー名を取得（なければ "default"）
