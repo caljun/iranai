@@ -1,8 +1,3 @@
-function getUser() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("user") || "default"; // ユーザー名を取得（なければ "default"）
-}
-
 function createUserList() {
     const username = prompt("あなたの名前（またはID）を入力してください");
     if (username) {
@@ -10,6 +5,10 @@ function createUserList() {
     }
 }
 
+function getUser() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("user") || "default"; // ユーザー名を取得（なければ "default"）
+}
 
 function postItem() {
     const title = document.getElementById('title').value.trim();
