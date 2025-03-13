@@ -27,7 +27,9 @@ function postItem() {
         const reader = new FileReader();
         reader.onload = function (e) {
             imageUrl = e.target.result;
-            saveItem({ title, description, price, imageUrl, sellerInstagram });
+            setTimeout(() => { // スマホで遅延しないように少し待つ
+                saveItem({ title, description, price, imageUrl, sellerInstagram });
+            }, 100);
         };
         reader.readAsDataURL(imageInput.files[0]);
     } else {

@@ -27,3 +27,21 @@ button {
     color: #fff;
     cursor: pointer;
 }
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    button {
+        background-color: #000;
+        color: #fff;
+        border-radius: 8px;
+    }
+}
