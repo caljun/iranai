@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const gallery = document.querySelector(".gallery");
     const profileUrl = document.getElementById("profileUrl");
     const userUrl = document.getElementById("userUrl");
-    
+
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     // 投稿を表示する関数
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             gallery.appendChild(postBox);
         });
-        
+
         // 投稿が1つ以上ならURLを表示
         if (posts.length > 0) {
             profileUrl.style.display = "block";
@@ -27,20 +27,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ＋ボタンを押したらモーダルを開く
+    // `＋` ボタンを押したらモーダルを開く
     document.addEventListener("click", function (event) {
         if (event.target && event.target.id === "addPostBtn") {
             openModal();
         }
     });
 
-    // 投稿を追加
+    // 投稿を追加（この関数を `window` に登録）
     function addPost(name, image) {
         const newPost = { name, image };
         posts.push(newPost);
         localStorage.setItem("posts", JSON.stringify(posts));
         renderPosts();
     }
+
+    // ✅ `window` に関数を登録（これで `modal.js` から呼び出せる）
+    window.addPost = addPost;
 
     renderPosts();
 });
