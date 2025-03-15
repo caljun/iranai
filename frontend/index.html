@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iranai - アカウント登録</title>
+    <title>iranai - プロフィール</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <header class="fixed-header">
         <h1>iranai</h1>
-        <p>不要なものをシェアしよう</p>
-        <button id="registerBtn">アカウント登録</button>
+    </header>
+    
+    <div class="container">
+        <h1>マイページ</h1>
+        <div class="profile-section">
+            <img id="profileIcon" src="default-icon.png" alt="プロフィールアイコン">
+            <p id="profileUrl" style="display: none;">あなたのURL: <span id="userUrl"></span></p>
+        </div>
+        
+        <div class="gallery">
+            <button id="addPostBtn" class="post-box">＋</button>
+        </div>
     </div>
 
-    <script>
-        document.getElementById("registerBtn").addEventListener("click", function() {
-            window.location.href = "register.html";
-        });
-    </script>
+    <script src="scripts/profile.js"></script>
+    <script src="scripts/modal.js"></script>
 </body>
 </html>
