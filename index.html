@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IraNai - 不要品リスト</title>
+    <title>iranai - プロフィール</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>IraNai</h1>
-    <p>不要品を気軽にシェアしよう！</p>
-
-    <!-- マイリストを作るボタン -->
-    <button onclick="createUserList()">マイリストを作る</button>
-
+    <header class="fixed-header">
+        <h1>iranai</h1>
+    </header>
+    <br>
+    <br>
     <div class="container">
-        <h2>不要品を投稿</h2>
-        <input type="text" id="title" placeholder="タイトル">
-        <textarea id="description" placeholder="説明"></textarea>
-        <input type="number" id="price" placeholder="価格 (0円OK)">
-        <input type="file" id="image">
-        <input type="text" id="instagram" placeholder="Instagram ID（@なしで入力）">
-        <button onclick="postItem()">リストに追加</button>
+        <div class="profile-section">
+            <img id="profileIcon" src="default-icon.png" alt="プロフィールアイコン">
+            <p id="profileUrl" style="display: none;">あなたのURL: <span id="userUrl"></span></p>
+        </div>
+        
+        <div class="gallery">
+            <button id="addPostBtn" class="post-box">＋</button>
+        </div>
     </div>
 
-    <h2>不要品リスト</h2>
-    <div id="itemList" class="container"></div>
-
-    <script src="script.js"></script>
+    <script src="scripts/profile.js"></script>
+    <script src="scripts/modal.js"></script>
 </body>
 </html>
