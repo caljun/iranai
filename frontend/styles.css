@@ -144,8 +144,8 @@ body {
 
 /* 削除ボタンのデザイン */
 .delete-btn {
-    background-color: #000000;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border: black;
     padding: 5px 10px;
     font-size: 12px;
