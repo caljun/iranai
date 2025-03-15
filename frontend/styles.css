@@ -146,7 +146,7 @@ body {
 .delete-btn {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
-    border: 1px black;
+    border: 1px solid #000000;
     padding: 5px 10px;
     font-size: 12px;
     cursor: pointer;
