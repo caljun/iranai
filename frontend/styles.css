@@ -1,7 +1,7 @@
 /* 全体のスタイル */
 body {
     font-family: Arial, sans-serif;
-    background-color: #c9c5c5;
+    background-color: #dad6d6;
     color: #000000;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
     top: 0;
     width: 100%;
     background-color: #fdfcfc;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
     padding: 10px 0;
     font-size: 24px;
