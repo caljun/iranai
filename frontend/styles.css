@@ -11,7 +11,8 @@ body {
 .fixed-header {
     position: fixed;
     top: 0;
-    width: 80%;
+    height: 100px;
+    width: 100%;
     background-color: #fdfcfc;
     color: #000000;
     text-align: center;
