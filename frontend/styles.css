@@ -64,6 +64,22 @@ body {
     transition: background 0.3s;
 }
 
+/* モーダル（投稿フォーム） */
+#postModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%; /* サイトの半分くらいのサイズ */
+    height: auto;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
 .post-box:hover {
     background-color: #f0f0f0;
 }
